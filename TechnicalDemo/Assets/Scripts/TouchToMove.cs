@@ -70,9 +70,7 @@ public class TouchToMove : MonoBehaviour
                     turn = turn-180;
                 }
 
-                Debug.Log(turn);
                 turnRotation = Quaternion.Euler(0f, 0f, turn);
-                Debug.Log(turnRotation);
                 m_RigidBody.MoveRotation(m_RigidBody.rotation * turnRotation);
                 //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y,))
 
