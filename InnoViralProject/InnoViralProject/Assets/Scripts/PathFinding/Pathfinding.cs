@@ -5,7 +5,6 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     public Transform seeker, target;
-
     GridPathFinding grid;
 
     private void Awake()
@@ -52,7 +51,7 @@ public class Pathfinding : MonoBehaviour
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
-                if (neighbour.walkable || closedSet.Contains(neighbour))
+                if (!neighbour.walkable || closedSet.Contains(neighbour))
                     continue;
 
                 int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
