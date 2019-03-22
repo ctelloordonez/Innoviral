@@ -56,6 +56,8 @@ public class SwipeGesture : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Turtle")
                 {
+                    Turtle turtle = hit.transform.gameObject.GetComponent<Turtle>();
+                    turtle.Trapped = false;
                     Debug.Log("Saved");
                 }
             }
