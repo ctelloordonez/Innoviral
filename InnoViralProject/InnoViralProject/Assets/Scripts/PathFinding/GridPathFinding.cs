@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridPathFinding : MonoBehaviour
 {
+    public bool onlyDisplayPathGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -19,6 +20,14 @@ public class GridPathFinding : MonoBehaviour
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
 
+    }
+
+    public int MaxSize
+    {
+        get
+        {
+            return gridSizeX * gridSizeY;
+        }
     }
 
     private void CreateGrid()
@@ -78,21 +87,36 @@ public class GridPathFinding : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position.normalized, new Vector3(1, gridWorldSize.y, gridWorldSize.x));
 
-        if ( grid != null)
+        if (onlyDisplayPathGizmos)
         {
-            foreach (Node node in grid)
+            if (path != null)
             {
-                Gizmos.color = (node.walkable) ? Color.white : Color.red;
-
-                if(path != null)
+                foreach (Node node in path)
                 {
-                    if (path.Contains(node))
-                    {
-                        Gizmos.color = Color.black;
-                    }
+                    Gizmos.color = Color.black;
+                    Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
                 }
+            }
+        }
 
-                Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+        else
+        {
+            if (grid != null)
+            {
+                foreach (Node node in grid)
+                {
+                    Gizmos.color = (node.walkable) ? Color.white : Color.red;
+
+                    if (path != null)
+                    {
+                        if (path.Contains(node))
+                        {
+                            Gizmos.color = Color.black;
+                        }
+                    }
+
+                    Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+                }
             }
         }
     }
