@@ -67,17 +67,22 @@ public class Heap<T> where T : IHeapItem<T>
                     {
                         swapIndex = childIndexRight;
                     }
-
-                    if (item.CompareTo(items[swapIndex]) < 0)
-                    {
-                        Swap(item, items[swapIndex]);
-                    }
-
-                    else
-                    {
-                        return;
-                    }
                 }
+
+                if (item.CompareTo(items[swapIndex]) < 0)
+                {
+                    Swap(item, items[swapIndex]);
+                }
+
+                else
+                {
+                    return;
+                }
+            }
+
+            else
+            {
+                return;
             }
         }
     }
@@ -89,10 +94,12 @@ public class Heap<T> where T : IHeapItem<T>
         while (true)
         {
             T parentItem = items[parentIndex];
+
             if ( item.CompareTo(parentItem) > 0)
             {
                 Swap(item, parentItem);
             }
+
             else
             {
                 break;

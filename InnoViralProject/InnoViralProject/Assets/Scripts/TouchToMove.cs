@@ -49,7 +49,7 @@ public class TouchToMove : MonoBehaviour
 
             Debug.DrawLine(transform.position, touchPosition, Color.white);
 
-            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Began)
             {
                 previousDistanceToTouchPos = 0;
                 currentDistanceToTouchPos = 0;
@@ -58,8 +58,6 @@ public class TouchToMove : MonoBehaviour
                 touchPosition.x = transform.position.x;
                 whereToMove = (touchPosition - transform.position).normalized;
                 m_RigidBody.velocity = new Vector3(0, whereToMove.y, whereToMove.z).normalized * speed;
-
-                Vector3 lookAt = whereToMove - transform.position;
 
                 transform.LookAt(touchPosition);
 

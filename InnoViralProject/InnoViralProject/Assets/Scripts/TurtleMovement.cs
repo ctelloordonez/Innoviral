@@ -7,14 +7,13 @@ public class TurtleMovement : MonoBehaviour
     public float speed = 10f;
     public Transform player;
 
-    Rigidbody m_RigidBody;
     float step;
     float moveTime = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_RigidBody = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
