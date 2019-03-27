@@ -60,8 +60,15 @@ public class SwipeGesture : MonoBehaviour
                     turtle.Trapped = false;
                     Debug.Log("Saved");
                 }
+
+                else if(hit.transform.gameObject.tag == "Enemy")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
             }
         }
+
+        hits = null;
     }
 
     private void OnDrawGizmos()
