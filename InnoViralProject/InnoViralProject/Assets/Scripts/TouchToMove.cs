@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TouchToMove : MonoBehaviour
 {
     public float speed = 10f;
     public float acceleration = 1f;
     public float turnSpeed = 10f;
+
+    public GameObject tap;
 
     Rigidbody m_RigidBody;
 
@@ -20,10 +23,13 @@ public class TouchToMove : MonoBehaviour
     float turn;
     Quaternion turnRotation;
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
         m_RigidBody = GetComponent<Rigidbody>();
+        tap.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,6 +62,12 @@ public class TouchToMove : MonoBehaviour
                 isMoving = true;
                 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.nearClipPlane));
                 touchPosition.x = transform.position.x;
+
+                // Tap UI
+                tap.SetActive(true);
+                Vector3 tapPos = Camera.main.WorldToScreenPoint(touchPosition);
+                tap.transform.position = tapPos;
+
                 whereToMove = (touchPosition - transform.position).normalized;
                 m_RigidBody.velocity = new Vector3(0, whereToMove.y, whereToMove.z).normalized * speed;
 
@@ -72,6 +84,11 @@ public class TouchToMove : MonoBehaviour
                 m_RigidBody.MoveRotation(m_RigidBody.rotation * turnRotation);
                 //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y,))
 
+            }
+
+            if(touch.phase == TouchPhase.Ended)
+            {
+                tap.SetActive(false);
             }
         }
 
