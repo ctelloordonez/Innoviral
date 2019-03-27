@@ -10,6 +10,5 @@ public class IncreaseHealth : MonoBehaviour
         {
             PlayerHealth.health += 1; 
         }
-       
     }
 }
