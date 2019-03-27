@@ -27,6 +27,7 @@ public class Pathfinding : MonoBehaviour
 
         Node startNode = grid.NodeFromWorldPoint(startPosition);
         Node targetNode = grid.NodeFromWorldPoint(targetPosition);
+        startNode.parent = startNode;
 
         if (startNode.walkable && targetNode.walkable)
         {
