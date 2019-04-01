@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
                 heart2.gameObject.SetActive(true);
                 heart3.gameObject.SetActive(false);
                 break;
-
+                
             case 1:
                 heart1.gameObject.SetActive(true);
                 heart2.gameObject.SetActive(false);
@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
                // player.SetActive(false);
                 Time.timeScale = 0;
                 break;
-
+                
         }
     }
 
