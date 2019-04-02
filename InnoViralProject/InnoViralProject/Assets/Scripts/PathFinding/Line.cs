@@ -11,7 +11,7 @@ public struct Line
     Vector2 pointOnLine_1;
     Vector2 pointOnLine_2;
 
-    //floatgradientPerpendicular;
+    float gradientPerpendicular;
 
     bool approachSide;
 
@@ -22,12 +22,22 @@ public struct Line
 
         if(dy == 0)
         {
+            gradientPerpendicular = verticalLineGradient;
+        }
+
+        else
+        {
+            gradientPerpendicular = dy / dx;
+        }
+
+        if(gradientPerpendicular == 0)
+        {
             gradient = verticalLineGradient;
         }
 
         else
         {
-            gradient = -dx / dy;
+            gradient = -1 / gradientPerpendicular;
         }
 
         y_intercept = pointOnLine.y - gradient * pointOnLine.x;
@@ -48,10 +58,18 @@ public struct Line
         return GetSide(p) != approachSide;
     }
 
+    public float DistanceFromPoint(Vector2 p)
+    {
+        float yInterceptPerpendicular = p.y - gradientPerpendicular * p.x;
+        float intersectX = (yInterceptPerpendicular - y_intercept) / (gradient - gradientPerpendicular);
+        float intersectY = gradient * intersectX + y_intercept;
+        return Vector2.Distance(p, new Vector2(intersectX, intersectY));
+    }
+
     public void DrawWithGizmos(float length)
     {
-        Vector3 lineDir = new Vector3(1, 0, gradient).normalized;
-        Vector3 lineCentre = new Vector3(pointOnLine_1.x, 0, pointOnLine_1.y) + Vector3.up;
+        Vector3 lineDir = new Vector3(0, gradient, 1).normalized;
+        Vector3 lineCentre = new Vector3(0, pointOnLine_1.y, pointOnLine_1.x) - Vector3.right;
         Gizmos.DrawLine(lineCentre - lineDir * length / 2f, lineCentre + lineDir * length / 2f);
     }
 }
