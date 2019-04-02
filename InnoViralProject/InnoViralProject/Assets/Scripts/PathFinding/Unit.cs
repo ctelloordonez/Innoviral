@@ -13,16 +13,16 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (Vector3.Distance(transform.position, target.position) > 10)
         {
             PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
         }
-    }
+    }*/
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
@@ -53,8 +53,8 @@ public class Unit : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);    // Rotation 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);      // Rotation
+            //Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);    // Rotation 
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);      // Rotation
             yield return null;
         }
     }
