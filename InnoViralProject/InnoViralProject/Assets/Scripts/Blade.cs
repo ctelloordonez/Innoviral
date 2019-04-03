@@ -7,55 +7,22 @@ public class Blade : MonoBehaviour
     public GameObject bladeTrailPrefab;
     public float minCuttingVelocity = .001f;
 
-    bool isCutting = false;
-
     Vector3 previousPosition;
     Vector3 touchPos;
 
     GameObject currentBladeTrail;
 
-    Camera _camera;
     SphereCollider _sphereCollider;
-    Touch touch;
 
     // Start is called before the first frame update
     void Start()
     {
-        _camera = Camera.main;
         _sphereCollider = GetComponent<SphereCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateCut(Vector3 touchPosition)
     {
-        if(Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            touchPos = _camera.ScreenToWorldPoint(touch.position);
-            touchPos.x = transform.position.x;
-
-            if(touch.phase == TouchPhase.Moved && !isCutting)
-            {
-                StartCutting();
-            }
-
-            else if(touch.phase == TouchPhase.Ended && isCutting)
-            {
-                StopCutting();
-            }
-
-            if (isCutting)
-            {
-                UpdateCut();
-            }
-        }
-
-       
-    }
-
-    void UpdateCut()
-    {
-        Vector3 newPosition = touchPos;
+        Vector3 newPosition = touchPosition;
         transform.position = newPosition;
 
         float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime;
@@ -63,19 +30,18 @@ public class Blade : MonoBehaviour
         previousPosition = newPosition;
     }
 
-    void StartCutting()
+    public void StartCutting(Vector3 touchPosition)
     {
-        isCutting = true;
-        previousPosition = touchPos;
-        _sphereCollider.enabled = false;
+        previousPosition = touchPosition;
+        _sphereCollider.enabled = true;
         currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
     }
 
-    void StopCutting()
+    public void StopCutting()
     {
-        isCutting = false;
         currentBladeTrail.transform.SetParent(null);
         Destroy(currentBladeTrail, 2f);
         _sphereCollider.enabled = false;
+        transform.position = Vector3.zero;
     }
 }
