@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameControl : MonoBehaviour
     private GameObject winText;
 
     public static bool youWin;
+   // public GameObject puzzleGate;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,8 @@ public class GameControl : MonoBehaviour
         {
             youWin = true;
             winText.SetActive(true);
+            SceneManager.LoadScene("level2.1");
+
         }
 
             
