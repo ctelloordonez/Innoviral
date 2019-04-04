@@ -12,6 +12,7 @@ public class TouchToMove : MonoBehaviour
     public GameObject tap;
 
     Rigidbody m_RigidBody;
+    Animator _animator;
 
     Touch touch;
     Vector3 touchPosition, whereToMove;
@@ -23,13 +24,16 @@ public class TouchToMove : MonoBehaviour
     float turn;
     Quaternion turnRotation;
 
-   
+    bool tapped;
 
     // Start is called before the first frame update
     void Start()
     {
         m_RigidBody = GetComponent<Rigidbody>();
-        tap.SetActive(false);
+        tapped = false;
+        tap.SetActive(tapped);
+
+        _animator = tap.GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
@@ -64,9 +68,11 @@ public class TouchToMove : MonoBehaviour
                 touchPosition.x = transform.position.x;
 
                 // Tap UI
-                tap.SetActive(true);
+                tapped = true;
+                tap.SetActive(tapped);
                 Vector3 tapPos = Camera.main.WorldToScreenPoint(touchPosition);
                 tap.transform.position = tapPos;
+                _animator.SetBool("Tapped", tapped);
 
                 whereToMove = (touchPosition - transform.position).normalized;
                 m_RigidBody.velocity = new Vector3(0, whereToMove.y, whereToMove.z).normalized * speed;
@@ -88,7 +94,9 @@ public class TouchToMove : MonoBehaviour
 
             if(touch.phase == TouchPhase.Ended)
             {
-                tap.SetActive(false);
+                //tap.SetActive(false);
+                tapped = false;
+                _animator.SetBool("Tapped", tapped);
             }
         }
 
