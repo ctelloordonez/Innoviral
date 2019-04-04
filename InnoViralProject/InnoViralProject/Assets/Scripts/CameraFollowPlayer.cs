@@ -51,6 +51,9 @@ public class CameraFollowPlayer : MonoBehaviour
             bounds.Encapsulate(targets[i].position);
         }
 
-        return bounds.size.z;
+        if (bounds.size.z >= bounds.size.y)
+            return bounds.size.z;
+        else
+            return bounds.size.y;
     }
 }
