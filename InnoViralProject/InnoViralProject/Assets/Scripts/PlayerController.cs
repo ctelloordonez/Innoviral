@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 10f;
+    public GameObject tapParticlePrefab;
 
     TouchPhase previousTouchPhase;
 
     // Move and turn
     Rigidbody m_Rigidbody;
+    GameObject currentTapParticle;
     Touch m_Touch;
     Vector3 touchPosition, previousTouchPosition, whereToMove;
     Quaternion turnRotation;
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             GetTouchPosition();
 
-            if (previousTouchPhase == TouchPhase.Began || previousTouchPhase == TouchPhase.Stationary && m_Touch.phase == TouchPhase.Ended && !startMoving)
+            if (previousTouchPhase == TouchPhase.Stationary && m_Touch.phase == TouchPhase.Ended && !startMoving)
             {
                 Debug.Log("TAP");
                 startMoving = true;
@@ -120,6 +122,17 @@ public class PlayerController : MonoBehaviour
 
             turnRotation = Quaternion.Euler(0f, 0f, turn);
             m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+
+            if (currentTapParticle == null)
+            {
+                currentTapParticle = Instantiate(tapParticlePrefab, touchPosition, (Quaternion.Euler(0, 90, 0)));
+                Destroy(currentTapParticle, 3f);
+            }
+            else
+            {
+                Destroy(currentTapParticle);
+                currentTapParticle = Instantiate(tapParticlePrefab, touchPosition, (Quaternion.Euler(0, 90, 0)));
+            }
 
             startMoving = false;
         }
