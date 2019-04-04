@@ -31,13 +31,14 @@ public class CameraFollowPlayer : MonoBehaviour
     void Zoom()
     {
         float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatesDistance() / zoomLimiter);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
 
     }
 
     void Move()
     {
-        Vector3 centerPoint = GetCenterPoint();
+        Vector3 centerPoint = targets[0].transform.position;
+
         Vector3 newPosition = centerPoint + offset;
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
     }
@@ -50,22 +51,6 @@ public class CameraFollowPlayer : MonoBehaviour
             bounds.Encapsulate(targets[i].position);
         }
 
-        return bounds.size.x;
-    }
-
-    Vector3 GetCenterPoint()
-    {
-        if(targets.Count == 1)
-        {
-            return targets[0].position;
-        }
-
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for(int i = 0; i < targets.Count; i++)
-        {
-            bounds.Encapsulate(targets[i].position);
-        }
-
-        return bounds.center;
+        return bounds.size.z;
     }
 }
