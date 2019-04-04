@@ -21,8 +21,7 @@ public class PlayerController : MonoBehaviour
     float turn;
 
     // Blade
-    public Blade m_Blade;
-    public GameObject bladeTrailPrefab;
+    Blade m_Blade;
 
     bool isCutting = false;
 
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
         previousTouchPhase = TouchPhase.Ended;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         TouchManager();
 
@@ -77,7 +76,16 @@ public class PlayerController : MonoBehaviour
 
             previousTouchPhase = m_Touch.phase;
         }
+
+        else if (isCutting)
+        {
+            m_Blade.StopCutting();
+            isCutting = false;
+            Debug.Log("STOP CUTTING");
+        }
+
     }
+
 
     void GetTouchPosition()
     {
