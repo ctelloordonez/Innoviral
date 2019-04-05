@@ -8,7 +8,7 @@ public class IncreaseHealth : MonoBehaviour
     {
         if(collision.gameObject.tag == "HealthSource")
         {
-            PlayerHealth.health += 1; 
+            SubmarineHealth.playerHealth += 1;
         }
     }
 }

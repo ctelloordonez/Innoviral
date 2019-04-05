@@ -8,8 +8,8 @@ public class PlayerHealthDamage : MonoBehaviour
     {
        if(other.gameObject.tag == "Trap")
         {
-            PlayerHealth.health -= 1;
-            if(PlayerHealth.health == 0)
+            SubmarineHealth.playerHealth -= 1;
+            if(SubmarineHealth.playerHealth == 0)
             {
                 Destroy(gameObject);
             }

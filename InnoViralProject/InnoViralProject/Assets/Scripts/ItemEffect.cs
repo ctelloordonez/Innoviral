@@ -17,7 +17,7 @@ public class ItemEffect : MonoBehaviour
     public void Use()
     {
         // Instantiate(effect, player.position, Quaternion.identity);
-        PlayerHealth.health += 1;
+        SubmarineHealth.playerHealth += 1;
         Destroy(gameObject);
     }
 }
