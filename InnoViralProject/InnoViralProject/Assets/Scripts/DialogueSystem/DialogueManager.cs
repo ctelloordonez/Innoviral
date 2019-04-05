@@ -7,6 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
+    public Text continueButton;
+    public GameObject dialogueBox;
 
     public Queue<string> sentences;
 
@@ -18,6 +20,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        Time.timeScale = 0;
+        dialogueBox.SetActive(true);
+
         nameText.text = dialogue.name; 
 
         sentences.Clear();
@@ -40,10 +45,18 @@ public class DialogueManager : MonoBehaviour
 
         string s =  sentences.Dequeue();
         dialogueText.text = s;
+
+        if(sentences.Count == 0)
+        {
+            continueButton.text = "Finish";
+        }
     }
 
     void EndDialogue()
     {
+        continueButton.text = "Continue";
+        dialogueBox.SetActive(false);
+        Time.timeScale = 1;
         Debug.Log("End of conversation");
     }
 }

@@ -20,6 +20,18 @@ public class Blade : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Turtle")
+        {
+            if (other.GetComponent<Turtle>().Trapped)
+            {
+                other.GetComponent<Turtle>().Trapped = false;
+                Debug.Log("Turtle saved");
+            }
+        }
+    }
+
     public void UpdateCut(Vector3 touchPosition)
     {
         Vector3 newPosition = touchPosition;

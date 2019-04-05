@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        TouchManager();
+        if(Time.timeScale == 1)
+            TouchManager();
 
         Move();
     }
