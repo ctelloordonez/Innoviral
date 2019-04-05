@@ -7,7 +7,7 @@ public class LoadNewLevel : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Submarine")
+        if(other.gameObject.tag == "Turtle")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
