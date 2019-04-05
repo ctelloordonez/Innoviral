@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CollectPlastics : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Submarine")
+        if(other.gameObject.tag == "Submarine")
         {
             Destroy(gameObject);
             Score.scoreValue += 1;
