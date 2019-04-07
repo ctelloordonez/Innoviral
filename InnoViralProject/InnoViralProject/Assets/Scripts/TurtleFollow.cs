@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turtle : MonoBehaviour
+public class TurtleFollow : MonoBehaviour
 {
     public Transform target;
     public float moveSpeed = 10;
 
-    Unit unit;
-    bool trapped, followSub;
-    DialogueTrigger dialogueTrigger;
     Rigidbody m_Rigidbody;
-    SphereCollider m_SphereCollider;
+    bool followSub;
 
     // Start is called before the first frame update
     void Start()
     {
-        unit = GetComponent<Unit>();
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_SphereCollider = GetComponent<SphereCollider>();
-        dialogueTrigger = GetComponent<DialogueTrigger>();
-        trapped = true;
+        followSub = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +35,7 @@ public class Turtle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (followSub && !trapped)
+        if (followSub)
         {
             transform.LookAt(target);
 
@@ -56,32 +50,6 @@ public class Turtle : MonoBehaviour
             m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
 
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-        }
-    }
-
-    public bool Trapped
-    {
-        get
-        {
-            return trapped;
-        }
-        set
-        {
-            trapped = value;
-
-            if (trapped)
-            {
-                m_SphereCollider.enabled = false;
-            }
-            else
-            {
-                dialogueTrigger.TriggerDialogue();
-                m_SphereCollider.enabled = true;
-                if (Vector3.Distance(transform.position, target.position) > 20)
-                    followSub = true;
-            }
-
-            //unit.enabled = !trapped;
         }
     }
 }
