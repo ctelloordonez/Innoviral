@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class minion : MonoBehaviour
 {
+    Enemy enemy;
+
     bool chase;
     Transform target;
     BoxCollider m_BoxCollider;
@@ -15,6 +17,8 @@ public class minion : MonoBehaviour
 
     private void Start()
     {
+        enemy = GetComponent<Enemy>();
+        enemy.enabled = false;
         chase = false;
         m_BoxCollider = GetComponent<BoxCollider>();
     }
@@ -33,6 +37,7 @@ public class minion : MonoBehaviour
     {
         if(collision.gameObject.tag == "Submarine")
         {
+            Debug.Log("Collision");
             Destroy(gameObject);
         }
     }
@@ -42,6 +47,7 @@ public class minion : MonoBehaviour
         if(other.tag == "Submarine")
         {
             chase = true;
+            enemy.enabled = true;
             target = other.gameObject.transform;
         }
     }

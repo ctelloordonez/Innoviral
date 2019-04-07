@@ -6,6 +6,8 @@ public class OctopusShooting : MonoBehaviour
 {
     public Transform[] ShootingPoints;
 
+    Enemy enemy;
+
     Transform target;
     float timeToReachTarget;
     float t;
@@ -26,6 +28,9 @@ public class OctopusShooting : MonoBehaviour
 
     private void Start()
     {
+        enemy = GetComponent<Enemy>();
+        enemy.enabled = false;
+
         startPosition = transform.position;
         timeShot = shootCooldown;
         target = transform;
@@ -59,6 +64,8 @@ public class OctopusShooting : MonoBehaviour
             else
             {
                 isShooting = true;
+                isVulnerable = false;
+                enemy.enabled = false;
                 shots = 0;
             }
         }
@@ -96,6 +103,7 @@ public class OctopusShooting : MonoBehaviour
         {
             isShooting = false;
             isVulnerable = true;
+            enemy.enabled = true;
             restingTime = VulnerableTime;
             SetDestination(ShootingPoints[1], shootCooldown);
         }

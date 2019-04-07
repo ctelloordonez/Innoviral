@@ -5,6 +5,7 @@ using UnityEngine;
 public class Blade : MonoBehaviour
 {
     public GameObject bladeTrailPrefab;
+    public float damage;
     public float minCuttingVelocity = .001f;
 
     Vector3 previousPosition;
@@ -18,6 +19,7 @@ public class Blade : MonoBehaviour
     void Start()
     {
         _sphereCollider = GetComponent<SphereCollider>();
+        _sphereCollider.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +30,15 @@ public class Blade : MonoBehaviour
             {
                 other.GetComponent<Turtle>().Trapped = false;
                 Debug.Log("Turtle saved");
+            }
+        }
+
+        else if(other.tag == "Enemy")
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy.enabled == true)
+            {
+                enemy.TakeDamage();
             }
         }
     }
