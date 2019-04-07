@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TouchToMove : MonoBehaviour
 {
@@ -9,10 +8,7 @@ public class TouchToMove : MonoBehaviour
     public float acceleration = 1f;
     public float turnSpeed = 10f;
 
-    public GameObject tap;
-
     Rigidbody m_RigidBody;
-    Animator _animator;
 
     Touch touch;
     Vector3 touchPosition, whereToMove;
@@ -24,16 +20,10 @@ public class TouchToMove : MonoBehaviour
     float turn;
     Quaternion turnRotation;
 
-    bool tapped;
-
     // Start is called before the first frame update
     void Start()
     {
         m_RigidBody = GetComponent<Rigidbody>();
-        tapped = false;
-        tap.SetActive(tapped);
-
-        _animator = tap.GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,14 +56,6 @@ public class TouchToMove : MonoBehaviour
                 isMoving = true;
                 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.nearClipPlane));
                 touchPosition.x = transform.position.x;
-
-                // Tap UI
-                tapped = true;
-                tap.SetActive(tapped);
-                Vector3 tapPos = Camera.main.WorldToScreenPoint(touchPosition);
-                tap.transform.position = tapPos;
-                _animator.SetBool("Tapped", tapped);
-
                 whereToMove = (touchPosition - transform.position).normalized;
                 m_RigidBody.velocity = new Vector3(0, whereToMove.y, whereToMove.z).normalized * speed;
 
@@ -90,13 +72,6 @@ public class TouchToMove : MonoBehaviour
                 m_RigidBody.MoveRotation(m_RigidBody.rotation * turnRotation);
                 //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y,))
 
-            }
-
-            if(touch.phase == TouchPhase.Ended)
-            {
-                //tap.SetActive(false);
-                tapped = false;
-                _animator.SetBool("Tapped", tapped);
             }
         }
 

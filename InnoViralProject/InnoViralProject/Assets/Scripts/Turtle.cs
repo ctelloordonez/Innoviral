@@ -4,59 +4,20 @@ using UnityEngine;
 
 public class Turtle : MonoBehaviour
 {
-    public Transform target;
-    public float moveSpeed = 10;
-
     Unit unit;
-    bool trapped, followSub;
-    DialogueTrigger dialogueTrigger;
-    Rigidbody m_Rigidbody;
-    SphereCollider m_SphereCollider;
+    bool trapped;
 
     // Start is called before the first frame update
     void Start()
     {
         unit = GetComponent<Unit>();
-        m_Rigidbody = GetComponent<Rigidbody>();
-        m_SphereCollider = GetComponent<SphereCollider>();
-        dialogueTrigger = GetComponent<DialogueTrigger>();
         trapped = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    // Update is called once per frame
+    void Update()
     {
-        if(other.tag == "Submarine")
-        {
-            followSub = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Submarine")
-        {
-            followSub = true;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (followSub && !trapped)
-        {
-            transform.LookAt(target);
-
-            float turn = 180 - Vector3.Angle(transform.forward, Vector3.forward);
-
-            if (turn >= 90)
-            {
-                turn = turn - 180;
-            }
-
-            Quaternion turnRotation = Quaternion.Euler(0f, 0f, turn);
-            m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
-
-            transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-        }
+        
     }
 
     public bool Trapped
@@ -70,18 +31,11 @@ public class Turtle : MonoBehaviour
             trapped = value;
 
             if (trapped)
-            {
-                m_SphereCollider.enabled = false;
-            }
+                gameObject.layer = 9;
             else
-            {
-                dialogueTrigger.TriggerDialogue();
-                m_SphereCollider.enabled = true;
-                if(Vector3.Distance(transform.position, target.position) > 20)
-                    followSub = true;
-            }
+                gameObject.layer = 0;
 
-            //unit.enabled = !trapped;
+            unit.enabled = !trapped;
         }
     }
 }
