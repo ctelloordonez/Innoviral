@@ -7,17 +7,18 @@ public class ItemEffect : MonoBehaviour
 
   //  public GameObject effect;
     private Transform player;
+    public GameObject light;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Submarine").transform;
+        light.SetActive(false);
     }
 
     // Update is called once per frame
     public void Use()
     {
-        // Instantiate(effect, player.position, Quaternion.identity);
-        SubmarineHealth.playerHealth += 1;
-        Destroy(gameObject);
+        light.SetActive(true);
     }
 }
