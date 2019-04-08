@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadPuzzleScene : MonoBehaviour
+public class FinishLevel1 : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Submarine")
+        if (other.gameObject.tag == "Turtle")
         {
-            SceneManager.LoadScene("puzzle");
-            Destroy(gameObject);
-             
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
