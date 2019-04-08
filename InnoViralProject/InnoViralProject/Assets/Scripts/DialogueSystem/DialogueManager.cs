@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
     public Text dialogueText;
     public Text continueButton;
     public GameObject dialogueBox;
@@ -22,8 +21,6 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 0;
         dialogueBox.SetActive(true);
-
-        nameText.text = dialogue.name; 
 
         sentences.Clear();
 
