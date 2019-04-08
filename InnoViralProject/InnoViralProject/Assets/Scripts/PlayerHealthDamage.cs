@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthDamage : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
        if(other.gameObject.tag == "Enemy")
         {
