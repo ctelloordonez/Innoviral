@@ -5,19 +5,15 @@ using UnityEngine;
 public class ItemEffect : MonoBehaviour
 {
 
-  //  public GameObject effect;
-    private Transform player;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject trail;
+
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Submarine").transform;
+        trail.SetActive(false);
     }
 
-    // Update is called once per frame
     public void Use()
     {
-        // Instantiate(effect, player.position, Quaternion.identity);
-        PlayerHealth.health += 1;
-        Destroy(gameObject);
+        trail.SetActive(!trail.activeSelf);
     }
 }
