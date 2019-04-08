@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 480cf7d6635c7c1478bb11c1dd5e3d21
+guid: 4e9c34c33d47ee74e8e5ee8a9b3a2e87
 TextureImporter:
   fileIDToRecycleName:
-    21300000: WhatsApp Image 2019-04-08 at 19.13.12_0
-    21300002: WhatsApp Image 2019-04-08 at 19.13.12_1
-    21300004: WhatsApp Image 2019-04-08 at 19.13.12_2
-    21300006: WhatsApp Image 2019-04-08 at 19.13.12_3
-    21300008: WhatsApp Image 2019-04-08 at 19.13.12_4
-    21300010: WhatsApp Image 2019-04-08 at 19.13.12_5
+    21300000: WhatsApp Image 2019-04-08 at 17.24.11_0
+    21300002: WhatsApp Image 2019-04-08 at 17.24.11_1
+    21300004: WhatsApp Image 2019-04-08 at 17.24.11_2
+    21300006: WhatsApp Image 2019-04-08 at 17.24.11_3
+    21300008: WhatsApp Image 2019-04-08 at 17.24.11_4
+    21300010: WhatsApp Image 2019-04-08 at 17.24.11_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -112,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_0
+      name: WhatsApp Image 2019-04-08 at 17.24.11_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 420
-        height: 420
+        y: 460
+        width: 440
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,19 +126,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f619ec03721ab4b45bae8ea372ebd284
+      spriteID: 7b497d8d377bf684f9e1104a99f4e17e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_1
+      name: WhatsApp Image 2019-04-08 at 17.24.11_1
       rect:
         serializedVersion: 2
-        x: 420
-        y: 479
-        width: 733
-        height: 420
+        x: 441
+        y: 460
+        width: 718
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,19 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82120b7409ac0564bb012c8c4b375298
+      spriteID: 13f21e7a54c78eb489e3013098d79e87
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_2
+      name: WhatsApp Image 2019-04-08 at 17.24.11_2
       rect:
         serializedVersion: 2
-        x: 1154
-        y: 480
-        width: 420
-        height: 420
+        x: 1159
+        y: 460
+        width: 440
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76c484e32c410364fa6a30dc6d516ee1
+      spriteID: 75e20a007058adf43bc8902209f73bcd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_3
+      name: WhatsApp Image 2019-04-08 at 17.24.11_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 17
-        width: 420
-        height: 463
+        y: 0
+        width: 440
+        height: 460
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,19 +186,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e15e2fef4a389c04484d98e662a7dc52
+      spriteID: 1d05e02d4710d5e40b97807e11c7ed59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_4
+      name: WhatsApp Image 2019-04-08 at 17.24.11_4
       rect:
         serializedVersion: 2
-        x: 420
-        y: 14
-        width: 736
-        height: 466
+        x: 439
+        y: 0
+        width: 720
+        height: 459
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,19 +206,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 025fb55ec9e788949abcba784ff63aeb
+      spriteID: d0aec58a6952f3344a8b95983da38747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhatsApp Image 2019-04-08 at 19.13.12_5
+      name: WhatsApp Image 2019-04-08 at 17.24.11_5
       rect:
         serializedVersion: 2
-        x: 1155
-        y: 15
-        width: 420
-        height: 465
+        x: 1160
+        y: 0
+        width: 440
+        height: 459
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a8a31b8241714a46a6f0b1cad4e342b
+      spriteID: be1eea38e18b72240a120b4e8383a27c
       vertices: []
       indices: 
       edges: []
@@ -234,7 +234,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 927b7a1866e1b7a488b8de507ec39f32
+    spriteID: 61bcac8d9d1f6c24a9700d5d4fce7be0
     vertices: []
     indices: 
     edges: []
