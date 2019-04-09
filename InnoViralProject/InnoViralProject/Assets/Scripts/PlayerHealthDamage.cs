@@ -5,12 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthDamage : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-       if(other.gameObject.tag == "Enemy")
+       if(collision.gameObject.tag == "Enemy")
         {
             SubmarineHealth.playerHealth -= 1;
             if(SubmarineHealth.playerHealth == 0)
+            {
+                Destroy(gameObject);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Trap")
+        {
+            SubmarineHealth.playerHealth -= 1;
+            if (SubmarineHealth.playerHealth == 0)
             {
                 Destroy(gameObject);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
