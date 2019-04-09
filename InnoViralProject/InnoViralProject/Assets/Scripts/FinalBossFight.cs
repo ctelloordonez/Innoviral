@@ -32,7 +32,7 @@ public class FinalBossFight : MonoBehaviour
 
         startPosition = transform.position;
         timeShot = shootCooldown;
-        target = transform;
+        target = ShootingPoints[1];
         shots = 0;
         isVulnerable = false;
         isShooting = true;
