@@ -10,6 +10,7 @@ public class CollectPlastics : MonoBehaviour
         {
             Destroy(gameObject);
             Score.scoreValue += 1;
+            FindObjectOfType<AudioManager>().Play("PlasticCollect");
         }
     }
 }
