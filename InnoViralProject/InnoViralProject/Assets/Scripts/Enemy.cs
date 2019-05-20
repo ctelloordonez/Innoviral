@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int Health;
 
-    // Start is called before the first frame update
-    void Start()
+    private float dazedTime;
+    public float startDazedTime;
+    public float health;
+    float speed;
+
+    void Awake()
     {
-
+        speed = GetComponent<minion>().moveSpeed;
     }
 
-    public void TakeDamage()
+    private void Update()
     {
-        Health -= 1;
-        if(Health <= 0)
+        if(dazedTime <= 0)
         {
-            Debug.Log("TakeDamage");
+            speed = 5;
+        } else
+        {
+            speed = 0;
+            dazedTime -= Time.deltaTime;
+
+        }
+        if(health <= 0)
+        {
             Destroy(gameObject);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("works");
+        dazedTime = startDazedTime;
+        health -= damage;
     }
 }

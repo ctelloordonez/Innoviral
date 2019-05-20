@@ -38,7 +38,7 @@ public class Blade : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy.enabled == true)
             {
-                enemy.TakeDamage();
+               // enemy.TakeDamage();
             }
         }
     }
