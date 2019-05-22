@@ -7,9 +7,10 @@ public class PlayerAttack : MonoBehaviour
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 
-    public Transform attackPos;
+    public Transform meleeAttackPos, distanceAttackPos;
     public LayerMask whatIsEnemies;
-    public float attackRange;
+    public float meleeAttackRange;
+    public Vector3 distanceAttackSize;
     public float damage;
 
 
@@ -26,8 +27,22 @@ public class PlayerAttack : MonoBehaviour
     {
         if(timeBtwAttack <= 0)
         {
-            Debug.Log("enemytakessmth");
-            Collider[] enemiesToDamge = Physics.OverlapSphere(attackPos.position, attackRange, whatIsEnemies);
+            Debug.Log("meleeAttack");
+            Collider[] enemiesToDamge = Physics.OverlapSphere(meleeAttackPos.position, meleeAttackRange, whatIsEnemies);
+            for (int i = 0; i < enemiesToDamge.Length; i++)
+            {
+                enemiesToDamge[i].GetComponent<Enemy>().TakeDamage(damage);
+            }
+            timeBtwAttack = startTimeBtwAttack;
+        }
+    }
+
+    public void DistanceAttack()
+    {
+        if (timeBtwAttack <= 0)
+        {
+            Debug.Log("meleeAttack");
+            Collider[] enemiesToDamge = Physics.OverlapBox(distanceAttackPos.position, distanceAttackSize, distanceAttackPos.rotation, whatIsEnemies);
             for (int i = 0; i < enemiesToDamge.Length; i++)
             {
                 enemiesToDamge[i].GetComponent<Enemy>().TakeDamage(damage);
@@ -39,6 +54,7 @@ public class PlayerAttack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.DrawWireSphere(meleeAttackPos.position, meleeAttackRange);
+        Gizmos.DrawWireCube(distanceAttackPos.position, distanceAttackSize);
     }
 }
